@@ -11,11 +11,15 @@ print(cv2.__version__)
 # cv2.IMREAD_COLOR      - If set, always convert image to the 3 channel BGR
 #                         color image.
 img = cv2.imread("images/chessboard-contrast-squares.jpg", cv2.IMREAD_GRAYSCALE)
-
+imageSize = (400, 400)
 # TODO resize image with 'resize'
-
+img = cv2.resize(img, (400, 400))
 # TODO rotate image (but keep it rectangular) with 'rotate'
+img = cv2.rotate(img, cv2.ROTATE_90_CLOCKWISE)
 
 # TODO save image with 'imwrite'
-
+img = cv2.imwrite("images/editedChessboard", img)
 # TODO show the image with 'imshow'
+
+cv2.imshow("title", img)
+cv2.waitKey(0)
