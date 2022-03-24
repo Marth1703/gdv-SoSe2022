@@ -28,7 +28,7 @@ img = cv2.resize(img, newRes)
 #   https://numpy.org/doc/stable/reference/arrays.ndarray.html
 #   for general access on ndarrays
 # TODO print first row
-print(img[40])
+print(img[0])
 
 # TODO print first column
 print(img[:, 0])
