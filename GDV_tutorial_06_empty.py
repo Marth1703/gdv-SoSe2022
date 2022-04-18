@@ -34,15 +34,18 @@ font = cv2.FONT_HERSHEY_SIMPLEX
 
 # TODO define  RGB colors as variables
 
-
+blue = (255, 0, 0)
+green = (0, 255, 0)
+red = (0, 0, 255)
+black = (0, 0, 0)
 # exemplary color conversion (only for the class), tests usage of cv2.cvtColor
 
 # TODO enter found default values and uncomment
-# hue =
+hue = 120
 hue_range = 10
-# saturation =
+saturation = 200
 saturation_range = 100
-# value =
+value = 200
 value_range = 100
 
 
@@ -65,25 +68,46 @@ while True:
         img = frame.copy()
 
         # TODO draw arrows (coordinate system)
+        img = cv2.arrowedLine(img, (10, 10), (10, 100), red, thinner)
+        img = cv2.putText(img, 'X', (115, 25), font,
+                          font_size_small, red, thinner)
+        img = cv2.arrowedLine(img, (10, 10), (100, 10), red, thinner)
+        img = cv2.putText(img, 'Y', (5, 130), font,
+                          font_size_small, red, thinner)
 
         # TODO computing color ranges for display
-
+        upper_range = np.array([hue + hue_range,
+                                saturation + saturation_range,
+                                value + value_range])
+        lower_range = np.array([hue - hue_range,
+                                saturation - saturation_range,
+                                value - value_range])
         # TODO draw selection color circle and text for HSV values
 
         # TODO convert to HSV
-        # hsv =
+        hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
 
         # TODO create a bitwise mask
+        mask = cv2.inRange(hsv, lower_range, upper_range)
 
         # TODO apply mask
+        result = cv2.bitwise_and(img, img, mask=mask)
 
         # TODO show the original image with drawings in one window
 
+        title = 'Original image'
+        cv2.namedWindow(title, cv2.WINDOW_GUI_NORMAL)
+        cv2.setMouseCallback(title, color_picker)
+        cv2.imshow(title, img)
         # TODO show the masked image in another window
+        cv2.imshow("Masked Image", result)
 
         # TODO show the mask image in another window
-
+        cv2.imshow("Mask", mask)
         # TODO deal with keyboard input
+        key = cv2.waitKey(10)
+        if (key == ord("q")):
+            break
 
     else:
         print('Could not start video camera')

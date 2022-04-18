@@ -50,7 +50,7 @@ blue_range = 10
 def color_picker(event, x, y, flags, param):
     global blue_channel, green_channel, red_channel
     if event == cv2.EVENT_LBUTTONDBLCLK:
-        (b, g, r) = rgb[y, x]
+        (r, g, b) = rgb[y, x]
         blue_channel = int(b)
         red_channel = int(r)
         green_channel = int(g)
