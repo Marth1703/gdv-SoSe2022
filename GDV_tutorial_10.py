@@ -15,7 +15,7 @@ def get_frequencies(image):
     dft = cv2.dft(np.float32(image), flags=cv2.DFT_COMPLEX_OUTPUT)
 
     # apply shift of origin from upper left corner to center of image
-    dft_shift = np.fft.fftshift(dft)
+    dft_shift = np.fft.fftshift(dft) 
 
     # extract magnitude and phase images
     mag, phase = cv2.cartToPolar(dft_shift[:, :, 0], dft_shift[:, :, 1])

@@ -26,7 +26,7 @@ def show_kernel(kernel):
     cv2.imshow(title_kernel, kernel_img)
     cv2.waitKey(0)
 
-
+ 
 # Load the image.
 image_name = 'images/Bumbu_Rawon.jpg'
 image = cv2.imread(image_name, cv2.IMREAD_GRAYSCALE)
